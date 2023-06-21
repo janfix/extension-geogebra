@@ -22,7 +22,7 @@ define(['qtiCustomInteractionContext',
         'use strict';
         // VERSION MODIFIED-IMS-02-02-2023
 
-        var _typeIdentifier = 'GGBPCI'; 
+        var _typeIdentifier = 'GGBPCI';
 
         var GGBInteraction = {
             /*********************************
@@ -41,7 +41,7 @@ define(['qtiCustomInteractionContext',
              */
             getInstance: function getInstance(dom, config, state) {
                 var response = config.boundTo;
-                
+
                 config.properties.param = JSON.parse(config.properties.param)
                 config.properties.resp = JSON.parse(config.properties.resp)
 
@@ -95,7 +95,7 @@ define(['qtiCustomInteractionContext',
                     answers,
                     score,
                     data;
-                
+
                 if (typeof this.previewApplet !== "undefined") {
                     value.correct = this.previewApplet.getValue("correct")
                     value.answers = this.previewApplet.getValueString("answers");
@@ -108,7 +108,7 @@ define(['qtiCustomInteractionContext',
                         return { base: { integer: value.correct } };
                     } else {
 
-                        return { base : {string : 
+                        return { base : {string :
                         '{'+
                         '    name: "correct",'+
                         '    base: { boolean: '+value.correct+' },'+
@@ -162,7 +162,7 @@ define(['qtiCustomInteractionContext',
                 if (typeof this.previewApplet !== "undefined") {
                     this.previewApplet.remove();
                 }
-                
+
                 //window.ggbApplet.remove()
 
                 var $container = $(this.dom);
@@ -194,17 +194,17 @@ define(['qtiCustomInteractionContext',
             initialize: function initialize(id, dom, config, assetManager) {
                 //add method on(), off() and trigger() to the current object
                 event.addEventMgr(this);
-                
+
                 //id = response!!!!
                 var _this = this;
-                       
+
                 _this.config = config || {};
                 _this.dom = dom;
-                
+
                 //renderer.render(_this, _this.dom, _this.config, assetManager);
                 renderer.render(_this, _this.dom, config, assetManager);
-                
-                
+
+
                 //Listening to Change Data called from Question after changing values for config
                 this.on('dataChange', function (conf) {
 
@@ -247,10 +247,10 @@ define(['qtiCustomInteractionContext',
 
                 this.on('RProcessingChange', function (responseProcessing) {
                     _this.config.param.RProcessing = responseProcessing;
-                    
+
                 })
 
-                
+
 
                 //Listening to GGB ID Input and display Thumbnail in lateral Panel - Check Project ID = checkPID
                 this.on('checkPIDChange', function (PID) {
@@ -336,7 +336,7 @@ define(['qtiCustomInteractionContext',
 
                         $(_this.dom).find(".mowColorPlusButton").css("width", "");
                         $(_this.dom).find(".mowColorPlusButton").css("top", "");
-                        //$(_this.dom).find(".groupPanel").css("width", "360px!important"); 
+                        //$(_this.dom).find(".groupPanel").css("width", "360px!important");
                     }, 500);
                 });
 
@@ -398,13 +398,13 @@ define(['qtiCustomInteractionContext',
              * @param {Object} response
              */
             setResponse: function setResponse(response) {
-                if (response == "MCorrect") {
-                    if (this.api !== 'undefined') {
+                if (response === "MCorrect") {
+                    if (typeof this.api !== 'undefined') {
                         var value = this.api.getValue("correct");
                         this._currentResponse = { base: { integer: value } };
                     }
                 } else {
-                    alert("in case of ???")
+                    console.log(`no response set: ${response}`)
                 }
 
             },
