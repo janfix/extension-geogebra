@@ -35,7 +35,7 @@ final class Version202305230813533559_geogebra extends AbstractMigration
             $this->propagate(
                 new RegisterPciGeogebraIMS()
             )(
-                ['1.0.2']
+                ['1.0.3']
             )
         );
 
