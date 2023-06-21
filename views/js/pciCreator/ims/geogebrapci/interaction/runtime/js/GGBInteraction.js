@@ -404,7 +404,8 @@ define(['qtiCustomInteractionContext',
                         this._currentResponse = { base: { integer: value } };
                     }
                 } else {
-                    console.log(`no response set: ${response}`)
+                    // TODO: properly process and set the response from a QTI format
+                    console.log(`QTI response, not set: ${JSON.stringify(response)}`)
                 }
 
             },
